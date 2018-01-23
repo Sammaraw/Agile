@@ -2,6 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "13.jpeg",
       "scale" : "1x"
     },
     {
@@ -11,16 +12,6 @@
     {
       "idiom" : "universal",
       "scale" : "3x"
-    },
-    {
-      "idiom" : "ipad",
-      "filename" : "card_creature_wolf.png",
-      "scale" : "1x"
-    },
-    {
-      "idiom" : "ipad",
-      "filename" : "card_creature_wolf@2x.png",
-      "scale" : "2x"
     }
   ],
   "info" : {

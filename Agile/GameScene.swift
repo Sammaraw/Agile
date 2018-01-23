@@ -26,33 +26,36 @@ class GameScene: SKScene {
         addChild(bg)
  
         let one = Card(number:Type.one)
-        one.position = CGPoint(x: -130, y: 250)
+        one.position = CGPoint(x: -130, y: 200)
         addChild(one)
         
-        let three = Card(number:Type.one)
-        three.position = CGPoint(x: 0, y: 250)
+        let three = Card(number:Type.three)
+        three.position = CGPoint(x: 130, y: 200)
         addChild(three)
         
-        let two = Card(number:Type.one)
-        two.position = CGPoint(x: 130, y: 250)
+        let two = Card(number:Type.two)
+        two.position = CGPoint(x: 0, y: 200)
         addChild(two)
         
-        let five = Card(number:Type.one)
-        five.position = CGPoint(x: -130, y: 100)
+        let five = Card(number:Type.five)
+        five.position = CGPoint(x: -130, y: 0)
         addChild(five)
         
-        let eight = Card(number:Type.one)
-        eight.position = CGPoint(x: 0, y: 100)
+        let eight = Card(number:Type.eight)
+        eight.position = CGPoint(x: 0, y: 0)
         addChild(eight)
         
-        let thirteen = Card(number:Type.one)
-        thirteen.position = CGPoint(x: 130, y: 100)
+        let thirteen = Card(number:Type.thirteen)
+        thirteen.position = CGPoint(x: 130, y: 0)
         addChild(thirteen)
         
-        let twenty = Card(number:Type.one)
-        twenty.position = CGPoint(x: -130, y: -50)
+        let twenty = Card(number:Type.twenty)
+        twenty.position = CGPoint(x: -130, y: -200)
         addChild(twenty)
         
+        let coffee = Card(number:Type.coffee)
+        coffee.position = CGPoint(x:0 , y : -200)
+        addChild(coffee)
     }
     
     
@@ -87,19 +90,23 @@ class GameScene: SKScene {
         for t in touches {
             let location = t.location(in: self)
             if let card = atPoint(location) as? Card {
-                card.zPosition = Height.move.rawValue
                 if t.tapCount == 2{
+                    /*
                     if card.enlarged{
-                       card.size.width = pop.size.width
-                       card.size.height = pop.size.height
+                       /*card.size.width = pop.size.width
+                       card.size.height = pop.size.height*/
+                        
                     }else{
-                      card.size.height = self.size.height
-                      card.size.width = self.size.width
+                      /*card.size.height = self.size.height
+                      card.size.width = self.size.width*/
+                        
                     }
+ */
                     card.enlarge()
                     return
                 }
                 if card.enlarged {return}
+                card.zPosition = Height.move.rawValue
                 card.position = location
                 card.removeAction(forKey: "drop")
                 card.run(SKAction.scale(to: 1.5, duration: 0.25), withKey: "pickup")
@@ -127,10 +134,10 @@ class GameScene: SKScene {
         for t in touches {
             let location = t.location(in: self)
             if let card = atPoint(location) as? Card {
+                if (card.enlarged){return}
                 card.zPosition = Height.card.rawValue
                 card.removeFromParent()
                 addChild(card)
-                if (card.enlarged){return}
                 card.position = location
                 card.removeAction(forKey: "pickup")
                 card.run(SKAction.scale(to: 1.0, duration: 0.25), withKey: "drop")

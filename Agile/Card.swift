@@ -27,7 +27,7 @@ enum Height:CGFloat{
     case background = 10,
     card = 100,
     move = 150,
-    enlarged = 200
+    enlarged = 500
 }
 
 
@@ -55,19 +55,17 @@ class Card : SKSpriteNode {
       case .three:
         front = SKTexture(imageNamed:"3")
       case .five:
-        front = SKTexture(imageNamed:"card_creature_bear")
+        front = SKTexture(imageNamed:"5")
       case .eight:
-        front = SKTexture(imageNamed:"card_creature_bear")
+        front = SKTexture(imageNamed:"8")
       case .thirteen:
-        front = SKTexture(imageNamed:"card_creature_bear")
+        front = SKTexture(imageNamed:"13")
       case .twenty:
-        front = SKTexture(imageNamed:"card_creature_bear")
+        front = SKTexture(imageNamed:"20")
       case .coffee:
-        front = SKTexture(imageNamed:"card_creature_bear")
-      case .question:
-        front = SKTexture(imageNamed:"card_creature_bear")
+        front = SKTexture(imageNamed:"coffee")
       default:
-        front = SKTexture(imageNamed:"card_creature_wolf")
+        front = SKTexture(imageNamed:"1")
        }
         super.init(texture:front,color:.clear,size:front.size())
         self.zPosition = Height.card.rawValue
@@ -77,15 +75,19 @@ class Card : SKSpriteNode {
     func enlarge(){
         if enlarged {
             enlarged = false
+            
             self.zPosition = Height.card.rawValue
             position = oldpoint
             removeAllActions()
+            setScale(1.0)
         }else{
             enlarged = true
+            
             self.zPosition = Height.enlarged.rawValue
             oldpoint = position
             position = zeropoint
             removeAllActions()
+            setScale(4.0)
         }
         
     }
